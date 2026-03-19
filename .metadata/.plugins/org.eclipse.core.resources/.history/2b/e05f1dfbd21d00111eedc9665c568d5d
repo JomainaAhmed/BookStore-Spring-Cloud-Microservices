@@ -1,0 +1,28 @@
+# Server port
+server.port=8081
+
+# Application name (must match Feign client name)
+spring.application.name=book-service
+
+# H2 Database configuration
+spring.datasource.url=jdbc:h2:mem:bookdb
+spring.datasource.driver-class-name=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+
+# JPA settings
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+spring.jpa.hibernate.ddl-auto=create-drop
+spring.jpa.show-sql=true
+
+# Enable H2 Console
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2-console
+
+# Eureka registration
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka/
+eureka.client.register-with-eureka=true
+eureka.client.fetch-registry=true
+
+# Register using IP address
+eureka.instance.prefer-ip-address=true

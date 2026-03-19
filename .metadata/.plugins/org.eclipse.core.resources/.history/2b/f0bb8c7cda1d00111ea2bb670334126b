@@ -1,0 +1,37 @@
+package com.lpu.order;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import com.lpu.order.*;
+
+@RestController
+@RequestMapping("/api/orders")
+public class OrderController {
+
+    @Autowired
+    private OrderRepository repo;
+
+    @Autowired
+    private BookClient bookClient;
+
+    @GetMapping
+    public List<OrderEntity> getOrders(){
+        return repo.findAll();
+    }
+
+    @PostMapping
+    public OrderEntity placeOrder(@RequestBody OrderEntity order){
+
+        BookDTO book = bookClient.getBookById(order.getBookId());
+
+        order.setTotalPrice(book.getPrice() * order.getQuantity());
+        order.setStatus("PLACED");
+        order.setOrderDate(LocalDate.now());
+
+        return repo.save(order);
+    }
+}

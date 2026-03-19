@@ -1,0 +1,5 @@
+package com.lpu.order;
+
+public class BookClient {
+
+}
